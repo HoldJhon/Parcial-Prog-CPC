@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 
 /**
  *
- * @author Familia Jhon
+ * @author jhonm
  */
 public class Singleton {
     private static Singleton instance;

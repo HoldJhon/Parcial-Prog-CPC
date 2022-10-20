@@ -3,11 +3,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="./style/css.css">
+        <link rel="stylesheet" href="./style/css.css" type="text/css">
         <title>Parcial Jhon Molano</title>
     </head>
     <body>
-        <form action="control" method="get">
+        <form action="Control" method="POST">
             <div class="principal">
                 <h2>Registro</h2>
                 <h4>Ingresa los datos</h4>

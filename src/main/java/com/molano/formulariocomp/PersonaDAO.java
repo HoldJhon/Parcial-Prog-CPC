@@ -1,3 +1,5 @@
+package com.molano.formulariocomp;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,30 +8,33 @@ import java.util.List;
 
 /**
  *
- * @author Jhon
+ * @author jhonm
  */
-public class PersonaDAO{
-    private static final String SQL_READALL="select * from usuario ";
-    private static final ConexionBD con = new ConexionBD();
+public class PersonaDAO {
+
+    private static final String SQL_READALL = "select * from usuario ";
+    private static final Conexion con = new Conexion();
+
     public PersonaDAO() {
         con.conectar();
     }
-    public List<PersonaDTO> readAll(){
+
+    public List<PersonaDTO> readAll() {
         List<PersonaDTO> lista = null;
         PreparedStatement ps;
         try {
             ps = con.getConexion().prepareStatement(SQL_READALL);
             ResultSet rs = ps.executeQuery();
             lista = new ArrayList<>();
-            while (rs.next()){
+            while (rs.next()) {
                 PersonaDTO obj = new PersonaDTO(rs.getString("nombre"),
                         rs.getString("apellido"),
                         rs.getString("correo"),
-                        rs.getString("clave"),
+                        rs.getString("clave"));
                 lista.add(obj);
             }
         } catch (SQLException ex) {
-            System.out.println("Error al conectar: "+ ex);
+            System.out.println("Error al conectar: " + ex);
         }
         return lista;
     }

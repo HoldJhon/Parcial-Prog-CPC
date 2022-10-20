@@ -1,4 +1,5 @@
+Singleton.class
+com\molano\formulariocomp\Conexion.class
+com\molano\formulariocomp\Control.class
 com\molano\formulariocomp\PersonaDAO.class
-com\molano\formulariocomp\ConexionBD.class
-com\molano\formulariocomp\control.class
 com\molano\formulariocomp\PersonaDTO.class

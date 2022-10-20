@@ -1,11 +1,14 @@
+package com.molano.formulariocomp;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
- * @author Jhon
+ * @author jhonm
  */
 public class PersonaDTO implements Serializable{
+
     private String nombre;
     private String apellido;
     private String correo;
@@ -60,5 +63,39 @@ public class PersonaDTO implements Serializable{
     @Override
     public String toString() {
         return "PersonaDTO{" + "nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", clave=" + clave + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 11 * hash + Objects.hashCode(this.nombre);
+        hash = 11 * hash + Objects.hashCode(this.apellido);
+        hash = 11 * hash + Objects.hashCode(this.correo);
+        hash = 11 * hash + Objects.hashCode(this.clave);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PersonaDTO other = (PersonaDTO) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.apellido, other.apellido)) {
+            return false;
+        }
+        if (!Objects.equals(this.correo, other.correo)) {
+            return false;
+        }
+        return Objects.equals(this.clave, other.clave);
     }
 }
