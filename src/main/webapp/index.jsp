@@ -11,11 +11,11 @@
             <div class="principal">
                 <h2>Registro</h2>
                 <h4>Ingresa los datos</h4>
-                <input type="text" name="txt_nombres" placeholder="Nombre" required>
-                <input type="text" name="txt_telefono" placeholder="Telefono" required>
-                <input type="email" name="txt_correo" placeholder="Correo" required>
-                <input type="password" name="txt_contrasena" placeholder="Contraseña" required>
-                <button type="submit" name="btnRegistrar" value="Registrar">Registrar</button>
+                <input type="text" placeholder="Nombre" name="txt_nombres" required>
+                <input type="text" placeholder="Telefono" name="txt_telefono" required>
+                <input type="email" placeholder="Correo" name="txt_correo" required>
+                <input type="password" placeholder="Contraseña" name="txt_contrasena" required>
+                <button type="submit" value="Registrar" name="btnRegistrar">Registrar</button>
             </div>
         </form>
     </body>

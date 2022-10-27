@@ -42,11 +42,11 @@ public class Control extends HttpServlet {
         //processRequest(request, response);
 
         String nombres = request.getParameter("txt_nombres");
-        String correo = request.getParameter("txt_email");
+        String correo = request.getParameter("txt_correo");
         String telefono = request.getParameter("txt_telefono");
-        String contraseña = request.getParameter("txt_contraseña");
+        String clave = request.getParameter("txt_contrasena");
 
-        PersonaDTO persona = new PersonaDTO(nombres, telefono, correo, contraseña);
+        PersonaDTO persona = new PersonaDTO(nombres, telefono, correo, clave);
 
         response.setContentType("text/html;charset=UTF-8");
 
@@ -57,7 +57,7 @@ public class Control extends HttpServlet {
             out.println("<title>Bienvenido</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Bienvenido: " + persona.toString() + "</h1>");
+            out.println("<h1>" + persona.toString() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
