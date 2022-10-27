@@ -39,7 +39,7 @@ public class Control extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
 
         String nombres = request.getParameter("txt_nombres");
         String correo = request.getParameter("txt_email");

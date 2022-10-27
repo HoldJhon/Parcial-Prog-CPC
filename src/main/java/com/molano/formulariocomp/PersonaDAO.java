@@ -13,7 +13,7 @@ import java.util.List;
 public class PersonaDAO {
 
     private static final String SQL_READALL = "select * from usuario ";
-    private static final Conexion con= Conexion.getIntance();
+    private static final Conexion con = Conexion.getIntance();
 
     public PersonaDAO() {
         con.conectar();

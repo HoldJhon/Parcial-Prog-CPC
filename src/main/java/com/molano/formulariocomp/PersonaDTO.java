@@ -62,7 +62,7 @@ public class PersonaDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "PersonaDTO{" + "nombres=" + nombres + ", telefono=" + telefono + ", correo=" + correo + ", clave=" + clave + '}';
+        return "nombres=" + nombres + ", telefono=" + telefono + ", correo=" + correo + ", clave=" + clave;
     }
 
     @Override
