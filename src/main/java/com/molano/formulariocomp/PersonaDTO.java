@@ -7,12 +7,24 @@ import java.util.Objects;
  *
  * @author jhonm
  */
-public class PersonaDTO implements Serializable{
+public class PersonaDTO implements Serializable {
 
+    private int id;
     private String nombre;
     private String apellido;
     private String correo;
     private String clave;
+
+    public PersonaDTO() {
+    }
+
+    public PersonaDTO(int id, String nombre, String apellido, String correo, String clave) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.clave = clave;
+    }
 
     public PersonaDTO(String nombre, String apellido, String correo, String clave) {
         this.nombre = nombre;
@@ -21,11 +33,12 @@ public class PersonaDTO implements Serializable{
         this.clave = clave;
     }
 
-    public PersonaDTO() {
-        this.nombre = "";
-        this.apellido = "";
-        this.correo = "";
-        this.clave = "";
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -62,7 +75,7 @@ public class PersonaDTO implements Serializable{
 
     @Override
     public String toString() {
-        return "PersonaDTO{" + "nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", clave=" + clave + '}';
+        return "PersonaDTO{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", clave=" + clave + '}';
     }
 
     @Override
@@ -87,6 +100,9 @@ public class PersonaDTO implements Serializable{
             return false;
         }
         final PersonaDTO other = (PersonaDTO) obj;
+        if (this.id != other.id) {
+            return false;
+        }
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }

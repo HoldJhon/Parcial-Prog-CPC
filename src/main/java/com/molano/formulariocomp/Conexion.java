@@ -1,6 +1,5 @@
 package com.molano.formulariocomp;
 
-import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,40 +9,34 @@ import java.sql.SQLException;
  * @author jhonm
  */
 public class Conexion {
-    
-    private Connection conectar;
-    private String BD;
-    private String usuario;
-    private String contra;
 
-    public Conexion(Connection conectar, String BD, String usuario, String contra) {
-        this.conectar = conectar;
-        this.BD = BD;
-        this.usuario = usuario;
-        this.contra = contra;
-    }
+    Connection con;
+    private static Conexion intance = null;
+    private String url = "jdbc:postgresql://localhost:5432/bd_molano";
+    private String user = "postgres";
+    private String pss = "117";
 
-    public Conexion() {
-        this.conectar = null;
-        this.BD = "";
-        this.usuario = "";
-        this.contra = "";
-    }
-
-    public void conectar() {
+    private Conexion() {
         try {
             Class.forName("org.postgresql.Driver");
-            this.BD = "molano";
-            this.usuario = "postgres";
-            this.contra = "123456";
-            this.conectar = (Connection) DriverManager.getConnection(BD, usuario, contra);
-        } catch (ClassNotFoundException | HeadlessException | SQLException e) {
-            System.out.println("Error al conectar: " + e);
+            con = (Connection) DriverManager.getConnection(url, user, pss);
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("Error al conectar la base de datos: " + ex.getMessage());;
         }
     }
 
-    public Connection getConexion() {
-        return conectar;
+    public static Conexion getIntance() {
+        if (intance == null) {
+            intance = new Conexion();
+        }
+        return intance;
     }
-    
+
+    public Connection getCnn() {
+        return con;
+    }
+
+    public void cerrarConexion() {
+        intance = null;
+    }
 }

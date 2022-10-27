@@ -14,7 +14,6 @@
                 <input type="text" name="txt_nombres" placeholder="Nombre" required>
                 <input type="text" name="txt_apellidos" placeholder="Apellido" required>
                 <input type="email" name="txt_correo" placeholder="Correo" required>
-                <input type="text" name="txt_telefono" placeholder="Telefono" required>
                 <input type="password" name="txt_contrasena" placeholder="Contraseña" required>
                 <button type="submit" name="btnRegistrar" value="Registrar">Registrar</button>
             </div>
