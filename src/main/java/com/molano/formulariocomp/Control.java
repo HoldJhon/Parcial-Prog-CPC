@@ -2,7 +2,7 @@ package com.molano.formulariocomp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author jhonm
  */
 public class Control extends HttpServlet {
+
+    PersonaDAO dao = new PersonaDAO();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,34 +41,53 @@ public class Control extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
 
-        String nombres = request.getParameter("txt_nombres");
-        String correo = request.getParameter("txt_correo");
-        String telefono = request.getParameter("txt_telefono");
-        String clave = request.getParameter("txt_contrasena");
+        String boton = request.getParameter("boton");
 
-        PersonaDTO persona = new PersonaDTO(nombres, telefono, correo, clave);
-
-        response.setContentType("text/html;charset=UTF-8");
-
-        try ( PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Bienvenido</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>" + persona.toString() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        if (boton.equals("crear")) {
+            request.getRequestDispatcher("singUp.jsp").forward(request, response);
         }
 
-        PersonaDAO dao = new PersonaDAO();
+        if (boton.equals("inicio")) {
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
 
-        List<PersonaDTO> lista = dao.readAll();
-        for (PersonaDTO i : lista) {
-            System.out.println(i.toString());
+        if (boton.equals("registrar")) {
+            String c1 = request.getParameter("txt_contrasena1");
+            String c2 = request.getParameter("txt_contrasena2");
+            if (c1.equals(c2)) {
+                String nombres = request.getParameter("txt_nombres");
+                String correo = request.getParameter("txt_correo");
+                String telefono = request.getParameter("txt_telefono");
+
+                PersonaDTO persona = new PersonaDTO(nombres, telefono, correo, c1);
+                dao.nuevoUsuario(persona);
+
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            } else {
+                System.out.println("Las contraseñas no son iguales");
+                request.getRequestDispatcher("singUp.jsp").forward(request, response);
+            }
+        }
+
+        if (boton.equals("ingresar")) {
+            ArrayList<PersonaDTO> lista = dao.traerListaUsuarios();
+            PersonaDTO u = null;
+            String correo = request.getParameter("txt_correo");
+            String pas = request.getParameter("txt_contrasena").toString();
+
+            for (int i = 0; i < lista.size(); i++) {
+                System.out.println(lista.get(i).toString() + "texto dew");
+                if (lista.get(i).getCorreo().equals(correo)) {
+                    u = new PersonaDTO();
+                    u.setId(lista.get(i).getId());
+                    u.setNombres(lista.get(i).getNombres());
+                    u.setTelefono(lista.get(i).getTelefono());
+                    u.setCorreo(lista.get(i).getTelefono());
+                    u.setClave(lista.get(i).getClave());
+                    break;
+                }
+            }
         }
     }
 

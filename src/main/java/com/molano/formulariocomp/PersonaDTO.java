@@ -9,10 +9,22 @@ import java.util.Objects;
  */
 public class PersonaDTO implements Serializable {
 
+    private int id;
     private String nombres;
     private String telefono;
     private String correo;
     private String clave;
+
+    public PersonaDTO() {
+    }
+
+    public PersonaDTO(int id, String nombres, String telefono, String correo, String clave) {
+        this.id = id;
+        this.nombres = nombres;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.clave = clave;
+    }
 
     public PersonaDTO(String nombres, String telefono, String correo, String clave) {
         this.nombres = nombres;
@@ -21,39 +33,40 @@ public class PersonaDTO implements Serializable {
         this.clave = clave;
     }
 
-    public PersonaDTO() {
-        this.nombres = "";
-        this.telefono = "";
-        this.correo = "";
-        this.clave = "";
+    public int getId() {
+        return id;
     }
 
     public String getNombres() {
         return nombres;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
-
     public String getTelefono() {
         return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
     }
 
     public String getCorreo() {
         return correo;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
     public String getClave() {
         return clave;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public void setClave(String clave) {
@@ -62,16 +75,17 @@ public class PersonaDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "Nombre: " + nombres + " Telefono: " + telefono + " Correo: " + correo + " Clave: " + clave;
+        return "Usuario{" + "id=" + id + ", nombres=" + nombres + ", telefono=" + telefono + ", correo=" + correo + ", clave=" + clave + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.nombres);
-        hash = 83 * hash + Objects.hashCode(this.telefono);
-        hash = 83 * hash + Objects.hashCode(this.correo);
-        hash = 83 * hash + Objects.hashCode(this.clave);
+        int hash = 3;
+        hash = 79 * hash + this.id;
+        hash = 79 * hash + Objects.hashCode(this.nombres);
+        hash = 79 * hash + Objects.hashCode(this.telefono);
+        hash = 79 * hash + Objects.hashCode(this.correo);
+        hash = 79 * hash + Objects.hashCode(this.clave);
         return hash;
     }
 
@@ -87,6 +101,9 @@ public class PersonaDTO implements Serializable {
             return false;
         }
         final PersonaDTO other = (PersonaDTO) obj;
+        if (this.id != other.id) {
+            return false;
+        }
         if (!Objects.equals(this.nombres, other.nombres)) {
             return false;
         }
